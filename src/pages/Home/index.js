@@ -13,10 +13,11 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  // Remplacement de "last" par "data", présent dans DataContext.Provider
+  // Remplacement de "last" par "data", utiliser dans DataContext.Provider
   const { data } = useData();
   // Récupération du dernier event du tableaux
   // Si nous récupérons bien des données, nous appliquons la condition présente dans la variable suivante
+  // length - 1 pour le dernier index
   const last = data && data.events ? data.events[data.events.length - 1] : null;
   return (
     <>
