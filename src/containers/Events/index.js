@@ -7,29 +7,32 @@ import ModalEvent from "../ModalEvent";
 
 import "./style.css";
 
+// Nombre d'évènememt par page :
 const PER_PAGE = 9;
 
 const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredEvents = ((!type ? data?.events : data?.events) || []).filter(
-    (event, index) => {
-      if (
-        (currentPage - 1) * PER_PAGE <= index &&
-        PER_PAGE * currentPage > index
-      ) {
-        return true;
-      }
-      return false;
+  const filteredEvents = (
+    (!type ? data?.events : data?.events.filter((evt) => evt.type === type)) ||
+    []
+  ).filter((event, index) => {
+    if (
+      (currentPage - 1) * PER_PAGE <= index &&
+      PER_PAGE * currentPage > index
+    ) {
+      return true;
     }
-  );
+    return false;
+  });
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
+  // console.log(typeList);
   return (
     <>
       {error && <div>An error occured</div>}
@@ -46,9 +49,13 @@ const EventList = () => {
             {filteredEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
+                  // A corriger
+                  //  is marked as required in `EventCard`, but its value is `undefined`.
                   <EventCard
                     onClick={() => setIsOpened(true)}
                     imageSrc={event.cover}
+                    // A corriger
+                    // The prop `title` is marked as required in `EventCard`, but its value is `undefined`
                     title={event.title}
                     date={new Date(event.date)}
                     label={event.type}

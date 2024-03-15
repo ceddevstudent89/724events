@@ -1,4 +1,4 @@
-// Correction : Un tableau commence toujour par l'index 0
+// Correction : Un tableau commence toujours par l'index 0
 export const MONTHS = {
   0: "janvier",
   1: "février",

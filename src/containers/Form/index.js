@@ -6,7 +6,7 @@ import Button, { BUTTON_TYPES } from "../../components/Button";
 
 const mockContactApi = () =>
   new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+    setTimeout(resolve, 900);
     // Pour l'exemple, on simule un succès après 1 seconde
     // En cas d'erreur simulée :
     // setTimeout(() => reject(new Error('Une erreur est survenue')), 1000);

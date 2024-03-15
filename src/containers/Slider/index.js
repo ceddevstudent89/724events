@@ -65,7 +65,8 @@ const Slider = () => {
                   checked={index === radioIdx}
                   // checked={idx === radioIdx}
                   // Erreur console
-                  onChange={() => setIndex(index)}
+                  // Ajout readOnly ou onChange suite à l'erreur de la console
+                  readOnly
                 />
               ))}
             </div>
